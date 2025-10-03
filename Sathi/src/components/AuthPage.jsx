@@ -5,7 +5,7 @@ import SignUpForm from './SignUpForm'; // Assumes forms are in the same director
 import './AuthPage.css'; // Assumes CSS is in the src/ directory
 // ... rest of the code
 
-function AuthPage() {
+function AuthPage({ onAuthSuccess, onGoHome }) {
   const [isSigningIn, setIsSigningIn] = useState(true); // true for SignIn, false for SignUp
   const [userType, setUserType] = useState('User'); // 'User' or 'Psychiatrist'
 
@@ -13,9 +13,24 @@ function AuthPage() {
     // 🚨 NOTE: In a real app, you would send this data to your backend API
     console.log(`Submitting as ${isSigningIn ? 'Sign In' : 'Sign Up'} for a ${userType}:`, formData);
 
-    // Placeholder for API call and navigation logic
-    // Example: fetch('/api/login', { method: 'POST', body: JSON.stringify(formData) });
-    alert(`Attempting to ${isSigningIn ? 'Sign In' : 'Sign Up'} as ${userType}. Check console for data.`);
+    // Simulate successful authentication
+    const userData = {
+      ...formData,
+      userType: userType,
+      name: formData.name || 'User',
+      id: Date.now() // Mock ID
+    };
+
+    // In a real app, you would validate credentials here
+    if (isSigningIn) {
+      // Simulate sign in success
+      alert(`Welcome back! Redirecting to dashboard...`);
+      onAuthSuccess && onAuthSuccess(userData);
+    } else {
+      // Simulate sign up success
+      alert(`Account created successfully! Redirecting to dashboard...`);
+      onAuthSuccess && onAuthSuccess(userData);
+    }
   };
 
   const toggleForm = () => {

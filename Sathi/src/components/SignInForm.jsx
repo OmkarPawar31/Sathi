@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Homepage  from './home.jsx';  
 
 
 function SignInForm({ onSubmit, userType }) {
@@ -13,7 +14,11 @@ function SignInForm({ onSubmit, userType }) {
     }
     
     // Pass the form data up to the parent component
-    onSubmit({ email, password });
+    onSubmit({ 
+      email, 
+      password, 
+      userType 
+    });
   };
 
   return (
