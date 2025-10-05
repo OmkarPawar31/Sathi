@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Calendar, Clock, IndianRupee, User, Phone, Mail, MessageSquare } from 'lucide-react';
+// This component handles all the appointment booking logic
 
 export default function AppointmentBooking({ doctor, onBack }) {
   const [selectedDate, setSelectedDate] = useState('');
@@ -62,10 +63,12 @@ export default function AppointmentBooking({ doctor, onBack }) {
       fee: doctor?.consultationFee || 1500
     };
 
-    console.log('Booking appointment:', appointmentData);
+    console.log('Booking appointment:', appointmentData); // TODO: remove this before production
     alert('Appointment booked successfully! You will receive a confirmation shortly.');
     
+    // TODO: Replace alert with proper notification system
     // In a real app, you would make an API call here
+    // fetch('/api/appointments', { method: 'POST', body: JSON.stringify(appointmentData) })
     onBack();
   };
 

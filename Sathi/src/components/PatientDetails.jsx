@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Calendar, Clock, Phone, Mail, User, Activity, FileText, Pill, AlertCircle, Edit, Save, Plus } from 'lucide-react';
 
+// Patient details view - spent way too much time on this component!
+
 export default function PatientDetails({ patient, onBack }) {
   const [activeTab, setActiveTab] = useState('overview');
   const [isEditingNotes, setIsEditingNotes] = useState(false);
@@ -18,7 +20,8 @@ export default function PatientDetails({ patient, onBack }) {
 
   const handleSaveNotes = () => {
     setIsEditingNotes(false);
-    alert('Notes updated successfully!');
+    // TODO: Actually save to database
+    alert('Notes updated successfully!'); // temporary alert
   };
 
   const handleAddNote = () => {

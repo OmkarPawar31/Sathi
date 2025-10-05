@@ -3,8 +3,8 @@ import { Calendar, Clock, ChevronLeft, ChevronRight, Plus, Video, Phone, Message
 
 export default function AppointmentSchedule({ appointments }) {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [viewMode, setViewMode] = useState('week'); // 'week' or 'day'
+  const [selectedDate, setSelectedDate] = useState(new Date()); // not sure if I need this
+  const [viewMode, setViewMode] = useState('week'); // 'week' or 'day' - might add month view later
 
   // Generate week view dates
   const getWeekDates = () => {

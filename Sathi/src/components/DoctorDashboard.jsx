@@ -1,3 +1,4 @@
+// Doctor dashboard - this was a pain to implement but finally working!
 import React, { useState } from 'react';
 import { Calendar, Clock, User, Heart, LogOut, Bell, Settings, Users, FileText, Activity, Search, Filter } from 'lucide-react';
 import PatientCard from './PatientCard';
@@ -5,7 +6,8 @@ import AppointmentSchedule from './AppointmentSchedule';
 import PatientDetails from './PatientDetails';
 import './DoctorDashboard.css';
 
-// Mock data for patients
+// Using mock data for now - will connect to real database later
+// NOTE: These are test patients I created for demo purposes
 const mockPatients = [
   {
     id: 1,
@@ -164,6 +166,7 @@ export default function DoctorDashboard({ user, onLogout }) {
   const [filterCondition, setFilterCondition] = useState('all');
 
   const handlePatientSelect = (patient) => {
+    console.log('Opening patient details for:', patient.name); // debug log
     setSelectedPatient(patient);
     setActiveTab('patient-details');
   };

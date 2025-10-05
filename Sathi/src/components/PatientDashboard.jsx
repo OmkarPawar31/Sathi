@@ -1,3 +1,4 @@
+// Main patient dashboard - took me forever to get this layout right!
 import React, { useState } from 'react';
 import { Calendar, Clock, User, Heart, LogOut, Bell, Settings, Plus, Search } from 'lucide-react';
 import DoctorCard from './DoctorCard';
@@ -5,7 +6,8 @@ import AppointmentBooking from './AppointmentBooking';
 import AppointmentList from './AppointmentList';
 import './PatientDashboard.css';
 
-// Mock data for doctors
+// TODO: Replace with actual API calls when backend is ready
+// Mock data for doctors - using this for now to test the UI
 const mockDoctors = [
   {
     id: 1,
@@ -65,6 +67,10 @@ const mockDoctors = [
   }
 ];
 
+
+function onLogout(redirectPath) {
+  window.location.href = redirectPath;
+}
 export default function PatientDashboard() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [selectedDoctor, setSelectedDoctor] = useState(null);
@@ -72,6 +78,7 @@ export default function PatientDashboard() {
   const [user] = useState({ name: "Omkar", avatar: "/api/placeholder/40/40" });
 
   const handleBookAppointment = (doctor) => {
+    // console.log('Booking appointment with:', doctor.name); // keeping this for debugging
     setSelectedDoctor(doctor);
     setActiveTab('book-appointment');
   };
@@ -110,7 +117,7 @@ export default function PatientDashboard() {
               <img src={user.avatar} alt={user.name} className="user-avatar" />
               <span className="user-name">{user.name}</span>
             </div>
-            <button className="header-btn logout-btn">
+            <button className="header-btn logout-btn" onClick={() => onLogout('/AuthPage.jsx')}>
               <LogOut size={20} />
             </button>
           </div>

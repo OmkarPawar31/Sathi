@@ -1,6 +1,7 @@
 import React from 'react';
 import { Star, MapPin, Clock, Calendar, IndianRupee, Languages } from 'lucide-react';
 
+// Doctor card component - reused this in multiple places
 export default function DoctorCard({ doctor, onBookAppointment, compact = false }) {
   if (compact) {
     return (

@@ -1,87 +1,172 @@
+
+html, body, #root {
+  height: 100%;
+  margin: 0;   
+  padding: 0;  
+}
+
+body {
+  font-family: Arial, sans-serif; /* Example font */
+  line-height: 1.5;
+}
+/* 1. FULL SCREEN CONTAINER (Background & Centering) */
 .auth-page-container {
   display: flex;
+  height: auto;
+  width: 100%;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f0f2f5;
+  background: linear-gradient(135deg, #1E3A24 0%, #385C3A 100%); 
   padding: 20px;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
 }
 
+/* 2. AUTH CARD (The centered form container) */
 .auth-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  /* Prominent Shadow */
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4); 
   width: 100%;
-  max-width: 400px;
+  max-width: 420px; 
   text-align: center;
+  position: relative;
+  overflow: hidden; 
+  font-size: 16px; 
+  z-index: 10;
 }
 
-/* Form Styling */
+/* Subtle background overlays */
+.auth-card::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 150px;
+  height: 100%;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: 0;
+}
+.auth-card::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 120px;
+  height: 120px;
+  background: rgba(139, 195, 74, 0.1);
+  border-radius: 50%;
+  filter: blur(30px);
+  z-index: 0;
+}
+
+
+/* Form Title (h1) */
+.auth-card h1 {
+  color: #333;
+  /* Increased top margin for breathing room */
+  margin: 0 0 25px 0; 
+  font-size: 2.2em;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* 3. FORM STYLING (Inputs and Select) */
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-top: 20px;
+  gap: 16px;
+  /* Removed redundant margin-top, letting h1 margin handle spacing */
+  margin-top: 0; 
+  position: relative; 
+  z-index: 1;
 }
 
-.auth-form input {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+/* Input and Select elements */
+.auth-form input,
+.auth-form select.form-select {
+  padding: 14px; 
+  border: 1px solid #dcdcdc; 
+  border-radius: 8px; 
   font-size: 16px;
+  color: #333;
+  background-color: #f8f8f8; 
+  transition: all 0.3s ease; 
+  width: 100%;
+  box-sizing: border-box; 
 }
 
+/* Focus styles using green accent */
+.auth-form input:focus,
+.auth-form select.form-select:focus {
+  border-color: #4CAF50; 
+  box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.3); 
+  outline: none;
+  background-color: white; 
+}
+
+.auth-form input::placeholder {
+    color: #a0a0a0;
+    font-weight: 400;
+}
+
+/* Ensure the select dropdown text is dark when selected */
+.auth-form select.form-select:valid {
+    color: #333;
+}
+.auth-form select.form-select:invalid {
+    color: #a0a0a0; /* Placeholder color when default is selected */
+}
+
+
+/* 4. BUTTON STYLING */
 .auth-form button {
-  padding: 12px;
-  background-color: #007bff; /* Blue color for action */
+  padding: 15px; 
+  background-color: #4CAF50; 
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4); 
 }
 
 .auth-form button:hover {
-  background-color: #0056b3;
+  background-color: #388E3C; 
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(76, 175, 80, 0.5); 
 }
 
-/* User Type Selector */
-.user-type-selector {
-  display: flex;
-  margin-bottom: 20px;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px solid #007bff;
+.auth-form button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
 }
 
-.user-type-selector button {
-  flex-grow: 1;
-  padding: 10px;
-  border: none;
-  background-color: white;
-  color: #007bff;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-weight: bold;
-}
 
-.user-type-selector button.active {
-  background-color: #007bff;
-  color: white;
-}
-
-/* Toggle Link */
+/* 5. TOGGLE LINK (For switching forms) */
 .toggle-link {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #555;
+  margin-top: 25px; 
+  font-size: 15px;
+  color: #666; 
 }
 
 .toggle-link span {
-  color: #007bff;
+  /* Action color is now slightly bolder */
+  color: #4CAF50; 
   cursor: pointer;
-  font-weight: bold;
-  margin-left: 5px;
+  font-weight: 700; /* Made actionable text bolder */
+  margin-left: 6px;
+  transition: color 0.3s ease;
+}
+
+.toggle-link span:hover {
+    color: #388E3C; 
 }
